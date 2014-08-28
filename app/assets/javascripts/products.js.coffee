@@ -1,8 +1,4 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
-readyPage = ->
+$(document).on "page:change", ->
 
   $(".select2").each (i, e) ->
     select = $(e)
@@ -25,6 +21,3 @@ readyPage = ->
 
     select.select2 options
     return
-
-$(document).ready readyPage
-$(document).on "page:load", readyPage
