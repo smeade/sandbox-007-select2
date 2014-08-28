@@ -49,6 +49,12 @@
     </div>
   </div>
   <div class="form-group">
+    <%= f.label 'Related Product Name', :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :related_product_name, {class: 'select2 ajax form-control', data: { source: products_path, current_id: @product.related_product_name ? @product.related_product_name : nil }} %></dd>
+    </div>
+  </div>
+  <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <%= f.submit :class => "btn btn-primary" %>
     </div>

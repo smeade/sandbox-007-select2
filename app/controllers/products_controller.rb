@@ -4,7 +4,13 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    # To support search (e.g. in select2 auto complete)
+    params[:q] ? @products = Product.where("name ilike ?", "#{params[:q]}%").limit(20) : @products = Product.all
+
+    respond_to do |format|
+      format.html { }
+      format.json { render :json => @products.collect {|p| { id: p.name, text: p.name }} }
+    end
   end
 
   # GET /products/1
@@ -69,6 +75,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:sku, :name, :description, :price_cents, :active, :available_on)
+      params.require(:product).permit(:sku, :name, :description, :price_cents, :active, :available_on, :related_product_name)
     end
 end
